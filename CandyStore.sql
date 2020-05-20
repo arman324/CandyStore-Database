@@ -1,7 +1,7 @@
 use CandyStore;
 
 create table Product (
-    ProductId bigint IDENTITY(1,1),
+    ProductId INT IDENTITY(1,1),
     Name varchar(20) not null,
     Color varchar(20),
     ProductionDate date not null,
@@ -64,3 +64,29 @@ create table Employee (
     PRIMARY KEY (EmployeeId),
     FOREIGN KEY(BranchId) references Branch(BranchId)
 )
+ 
+create table InvoiceHeader (
+    InvoiceHeaderId int IDENTITY(1,1),
+    CustomerId INT,
+    BranchId INT,
+    TotalCost NUMERIC(10,2),
+    OrderDate date not null,
+    EmployeeId INT,
+    PRIMARY KEY (InvoiceHeaderId),
+    FOREIGN KEY(CustomerId) references Customer(CustomerId),
+    FOREIGN KEY(BranchId) references Branch(BranchId),
+    FOREIGN KEY(EmployeeId) references Employee(EmployeeId)
+)
+
+create table InvoiceDetail (
+    InvoiceDetailId int IDENTITY(1,1),
+    InvoiceHeaderId INT,
+    ProductId INT,
+    quantity BIGINT,
+    UnitPrice NUMERIC(10,2),
+    RowCost NUMERIC(10,2),
+    PRIMARY KEY (InvoiceDetailId),
+    FOREIGN KEY(InvoiceHeaderId) references InvoiceHeader(InvoiceHeaderId),
+    FOREIGN KEY(ProductId) references Product(ProductId)
+)
+
