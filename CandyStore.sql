@@ -90,3 +90,12 @@ create table InvoiceDetail (
     FOREIGN KEY(ProductId) references Product(ProductId)
 )
 
+select * from Country
+INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
+INSERT INTO Country VALUES ('France', 'FR' , 'Europe')
+INSERT INTO Country VALUES ('Italy', 'IT' , 'Europe')
+INSERT INTO Country VALUES ('Canada', 'CA' , 'North America')
+INSERT INTO Country VALUES ('Japan', 'JA' , 'Asia')
+INSERT INTO Country VALUES ('USA', 'US' , 'North America')
+INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
+
