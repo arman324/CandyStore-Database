@@ -12,7 +12,7 @@ create table Product (
 
 create table Country( --The name of the country that the CandyStore has a branch in this country
     CountryId int IDENTITY(1,1),
-    CountryName varchar(20) not null,
+    CountryName varchar(20) not null UNIQUE,
     CountryCode varchar(5) not null, --US , FR , DE
     ContinentName varchar (20) not null,
     PRIMARY KEY (CountryId)
@@ -28,7 +28,7 @@ create table City (
 
 create table Branch (
     BranchId int IDENTITY(1,1),
-    BranchName varchar(30) not null,
+    BranchName varchar(30) not null UNIQUE,
     CityId int,
     PRIMARY KEY (BranchId),
     FOREIGN KEY(CityId) references City(CityId)
@@ -49,7 +49,7 @@ create table Manager (
     ManagerId int IDENTITY(1,1),
     ManagerName varchar(30) not null,
     ManagerLastName varchar(30) not null,
-    NationalCode varchar(20),
+    NationalCode varchar(20) UNIQUE,
     BranchId int,
     PRIMARY KEY (ManagerId),
     FOREIGN KEY(BranchId) references Branch(BranchId)
@@ -59,7 +59,7 @@ create table Employee (
     EmployeeId int IDENTITY(1,1),
     EmployeeName varchar(30) not null,
     EmployeeLastName varchar(30) not null,
-    NationalCode varchar(20),
+    NationalCode varchar(20) UNIQUE,
     BranchId int,
     PRIMARY KEY (EmployeeId),
     FOREIGN KEY(BranchId) references Branch(BranchId)
