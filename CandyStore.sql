@@ -70,7 +70,7 @@ create table InvoiceHeader (
     CustomerId INT,
     BranchId INT,
     TotalCost NUMERIC(10,2),
-    OrderDate date not null,
+    OrderDate TIMESTAMP not null,
     EmployeeId INT,
     PRIMARY KEY (InvoiceHeaderId),
     FOREIGN KEY(CustomerId) references Customer(CustomerId),
@@ -124,4 +124,15 @@ INSERT INTO Branch VALUES ('CanST_10',9)
 INSERT INTO Branch VALUES ('CanST_11',2)
 INSERT INTO Branch VALUES ('CanST_12',8)
 
+
+INSERT INTO Manager VALUES ('Michael','Halpert','032-3295023',1)
+INSERT INTO Manager VALUES ('Andy','Levinson','065-7218492',2)
+INSERT INTO Manager VALUES ('Josh','Wallace','096-8329213',3)
+INSERT INTO Manager VALUES ('Andy','Levinson','084-4235784',4)
+INSERT INTO Manager VALUES ('Angela','Kapoor','023-9183923',5)
+INSERT INTO Manager VALUES ('Martin','Bridge','099-1359523',6)
+INSERT INTO Manager VALUES ('Jan','Bernard','076-9173719',7)
+INSERT INTO Manager VALUES ('David','Green','038-8885234',8)
+INSERT INTO Manager VALUES ('James','Smith','055-4637223',9)
+INSERT INTO Manager VALUES ('Evelyn','ALbro','018-9423596',10)
 
