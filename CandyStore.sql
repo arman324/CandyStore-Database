@@ -3,7 +3,7 @@ Go
 
 create table Product (
     ProductId INT,
-    Name varchar(20) not null,
+    Name varchar(50) not null,
     Color varchar(20),
     ProductionDate date not null,
     ExpirationDate date not null,
@@ -181,3 +181,25 @@ INSERT INTO Employee VALUES (25,'Juliet','Grenfell','Cashier','071-9583293',11)
 INSERT INTO Employee VALUES (26,'Lane','Gaunt','Custodian','018-8574630',11)
 INSERT INTO Employee VALUES (27,'Peyton','Halpert','Cashier','002-9993281',12)
 INSERT INTO Employee VALUES (28,'Harley','Hardison','Custodian','062-0129313',12)
+
+
+INSERT INTO Product VALUES (1,'Nik-L-Nips Wax Bottles Candy','Colorful','2020-04-22','2022-04-22',5.99)
+INSERT INTO Product VALUES (2,'Necco Wafers Candy','Colorful','2020-01-25','2021-01-25',3.69)
+INSERT INTO Product VALUES (3,'Sugar Daddy Milk Caramel Pops','Brown','2020-02-15','2022-02-15',6.99)
+INSERT INTO Product VALUES (4,'Pop Rocks Candy','Colorful','2019-12-05','2022-12-05',1.99)
+INSERT INTO Product VALUES (5,'Nerds Candy','Colorful','2019-11-23','2022-05-23',7.69)
+INSERT INTO Product VALUES (6,'Jawbreakers Candy','Colorful','2018-10-20','2020-10-20',4.99)
+INSERT INTO Product VALUES (7,'Salt Water Taffy','Colorful','2020-03-21','2021-03-21',2.99)
+INSERT INTO Product VALUES (8,'Jolly Ranchers Candy','Colorful','2020-05-16','2023-05-16',4.69)
+INSERT INTO Product VALUES (9,'Smarties Candy','Colorful','2019-11-12','2020-11-12',2.99)
+INSERT INTO Product VALUES (10,'Milk Duds','Brown','2019-12-07','2021-12-07',1.99)
+INSERT INTO Product VALUES (11,'Charms Blow Pop','Colorful','2020-02-14','2022-08-14',1.69)
+INSERT INTO Product VALUES (12,'Atomic Fireballs Candy','Red','2020-04-27','2022-04-27',6.69)
+INSERT INTO Product VALUES (13,'Starburst Fruit Chews Candy','Pink','2020-03-09','2023-03-09',3.99)
+INSERT INTO Product VALUES (14,'Junior Mints','Brown','2020-05-01','2021-05-01',5.99)
+INSERT INTO Product VALUES (15,'Swedish Fish Candy','Colorful','2018-04-12','2020-10-12',2.69)
+INSERT INTO Product VALUES (16,'Milky Way Candy Bar','Brown','2019-10-03','2021-04-03',5.99)
+INSERT INTO Product VALUES (17,'Skittles Candy','Colorful','2020-02-04','2022-02-04',7.99)
+INSERT INTO Product VALUES (18,'M&M''s Candy','Colorful','2020-04-26','2023-04-26',4.69)
+INSERT INTO Product VALUES (19,'Life Savers Candy','Colorful','2020-03-13','2021-03-13',8.99)
+INSERT INTO Product VALUES (20,'Laffy Taffy','Pink','2020-02-02','2021-02-02',2.69)
