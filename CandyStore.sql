@@ -60,7 +60,7 @@ create table Employee (
     EmployeeId INT,
     EmployeeName varchar(30) not null,
     EmployeeLastName varchar(30) not null,
-    Role varchar(20),
+    Role varchar(20) not null,
     NationalCode varchar(20) UNIQUE,
     BranchId int,
     PRIMARY KEY (EmployeeId),
@@ -152,3 +152,32 @@ INSERT INTO Manager VALUES (8,'David','Green','038-8885234',8)
 INSERT INTO Manager VALUES (9,'James','Smith','055-4637223',9)
 INSERT INTO Manager VALUES (10,'Evelyn','ALbro','018-9423596',10)
 
+
+INSERT INTO Employee VALUES (1,'Avery','Albin','Cashier','043-8422023',1)
+INSERT INTO Employee VALUES (2,'Jackson','Barks','Custodian','011-6245234',1)
+INSERT INTO Employee VALUES (3,'Madison','Basil','Delivery Driver','033-0032833',1)
+INSERT INTO Employee VALUES (4,'William','Bevis','Delivery Driver','052-8822031',1)
+INSERT INTO Employee VALUES (5,'Mason','Camm','Cashier','012-0238939',2)
+INSERT INTO Employee VALUES (6,'Jane','Bruckman','Custodian','067-9992319',2)
+INSERT INTO Employee VALUES (7,'Clark','Budge','Cashier','099-8394023',3)
+INSERT INTO Employee VALUES (8,'Tanner','Capp','Custodian','074-8430313',3)
+INSERT INTO Employee VALUES (9,'Clayton','Bigwood','Cashier','046-0523413',4)
+INSERT INTO Employee VALUES (10,'Sawyer','Canby','Custodian','037-0004231',4)
+INSERT INTO Employee VALUES (11,'Vanessa','Capshaw','Delivery Driver','072-5230032',4)
+INSERT INTO Employee VALUES (12,'Wade','Claydon','Cashier','088-8349343',5)
+INSERT INTO Employee VALUES (13,'Reed','Danby','Custodian','043-3299942',5)
+INSERT INTO Employee VALUES (14,'Paige','Eno','Cashier','028-1032211',6)
+INSERT INTO Employee VALUES (15,'Holden','Clift','Custodian','094-9532933',6)
+INSERT INTO Employee VALUES (16,'Tyson','Flitter','Delivery Driver','090-8888432',6)
+INSERT INTO Employee VALUES (17,'Parker','Gedman','Cashier','052-8423423',7)
+INSERT INTO Employee VALUES (18,'Alexis','Dalton','Custodian','054-8593234',7)
+INSERT INTO Employee VALUES (19,'Marley','Flemons','Cashier','063-7753832',8)
+INSERT INTO Employee VALUES (20,'Archer','Covel','Custodian','068-9903011',8)
+INSERT INTO Employee VALUES (21,'Graham','Dale','Cashier','082-3339923',9)
+INSERT INTO Employee VALUES (22,'Maggie','Clay','Custodian','033-6887423',9)
+INSERT INTO Employee VALUES (23,'Rylan','Evens','Cashier','063-0009991',10)
+INSERT INTO Employee VALUES (24,'Annie','Courte','Custodian','024-5323421',10)
+INSERT INTO Employee VALUES (25,'Juliet','Grenfell','Cashier','071-9583293',11)
+INSERT INTO Employee VALUES (26,'Lane','Gaunt','Custodian','018-8574630',11)
+INSERT INTO Employee VALUES (27,'Peyton','Halpert','Cashier','002-9993281',12)
+INSERT INTO Employee VALUES (28,'Harley','Hardison','Custodian','062-0129313',12)
