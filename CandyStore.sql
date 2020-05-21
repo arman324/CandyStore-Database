@@ -1,7 +1,8 @@
-use CandyStore;
+USE CandyStore
+Go
 
 create table Product (
-    ProductId INT IDENTITY(1,1),
+    ProductId INT,
     Name varchar(20) not null,
     Color varchar(20),
     ProductionDate date not null,
@@ -11,7 +12,7 @@ create table Product (
 )
 
 create table Country ( 
-    CountryId int IDENTITY(1,1),
+    CountryId INT IDENTITY(1,1),
     CountryName varchar(20) not null UNIQUE,
     CountryCode varchar(5) not null, 
     ContinentName varchar (20) not null,
@@ -19,7 +20,7 @@ create table Country (
 )
 
 create table City (
-    CityId int IDENTITY(1,1),
+    CityId INT,
     CityName varchar(30) not null UNIQUE,
     CountryId int,
     PRIMARY KEY (CityId),
@@ -27,7 +28,7 @@ create table City (
 )
 
 create table Branch (
-    BranchId int IDENTITY(1,1),
+    BranchId INT,
     BranchName varchar(30) not null UNIQUE,
     CityId int,
     PRIMARY KEY (BranchId),
@@ -35,7 +36,7 @@ create table Branch (
 )
 
 create table Customer (
-    CustomerId int IDENTITY(1,1),
+    CustomerId INT,
     CustomerName varchar(30) not null,
     CustomerLastName varchar(30) not null,
     PhoneNumber varchar(12),
@@ -46,7 +47,7 @@ create table Customer (
 
 
 create table Manager (
-    ManagerId int IDENTITY(1,1),
+    ManagerId INT,
     ManagerName varchar(30) not null,
     ManagerLastName varchar(30) not null,
     NationalCode varchar(20) UNIQUE,
@@ -56,30 +57,44 @@ create table Manager (
 )
 
 create table Employee (
-    EmployeeId int IDENTITY(1,1),
+    EmployeeId INT,
     EmployeeName varchar(30) not null,
     EmployeeLastName varchar(30) not null,
+    Role varchar(20),
     NationalCode varchar(20) UNIQUE,
     BranchId int,
     PRIMARY KEY (EmployeeId),
+    CHECK (Role in ('Cashier','Delivery Driver','Custodian')),
     FOREIGN KEY(BranchId) references Branch(BranchId)
 )
- 
+
+create table BirthdayService (
+    BirthdayServiceId INT,
+    ServiceName varchar(30),
+    Description varchar(120),
+    Price NUMERIC (10,2) not null,
+    PRIMARY KEY (BirthdayServiceId)
+)
+
 create table InvoiceHeader (
-    InvoiceHeaderId int IDENTITY(1,1),
+    InvoiceHeaderId INT,
     CustomerId INT,
     BranchId INT,
+    BirthdayServiceStatus VARCHAR(4),
+    BirthdayServiceId INT,
     TotalCost NUMERIC(10,2),
     OrderDate TIMESTAMP not null,
     EmployeeId INT,
     PRIMARY KEY (InvoiceHeaderId),
+    CHECK (BirthdayServiceStatus in ('YES','NO')),
+    FOREIGN KEY(BirthdayServiceId) references BirthdayService(BirthdayServiceId),
     FOREIGN KEY(CustomerId) references Customer(CustomerId),
     FOREIGN KEY(BranchId) references Branch(BranchId),
     FOREIGN KEY(EmployeeId) references Employee(EmployeeId)
 )
 
 create table InvoiceDetail (
-    InvoiceDetailId int IDENTITY(1,1),
+    InvoiceDetailId INT,
     InvoiceHeaderId INT,
     ProductId INT,
     quantity BIGINT,
@@ -97,42 +112,43 @@ INSERT INTO Country VALUES ('Italy', 'IT' , 'Europe')
 INSERT INTO Country VALUES ('Canada', 'CA' , 'North America')
 INSERT INTO Country VALUES ('Japan', 'JA' , 'Asia')
 INSERT INTO Country VALUES ('USA', 'US' , 'North America')
+INSERT INTO Country VALUES ('sd', 'US' , 'North America')
 
 
-INSERT INTO City VALUES ('Berlin',1)
-INSERT INTO City VALUES ('Munich',1)
-INSERT INTO City VALUES ('Leipzig',1)
-INSERT INTO City VALUES ('Paris',2)
-INSERT INTO City VALUES ('Bologna',3)
-INSERT INTO City VALUES ('Toronto',4)
-INSERT INTO City VALUES ('Ottawa',4)
-INSERT INTO City VALUES ('Tokyo',5)
-INSERT INTO City VALUES ('Dallas',6)
-INSERT INTO City VALUES ('New York',6)
+INSERT INTO City VALUES (1,'Berlin',1)
+INSERT INTO City VALUES (2,'Munich',1)
+INSERT INTO City VALUES (3,'Leipzig',1)
+INSERT INTO City VALUES (4,'Paris',2)
+INSERT INTO City VALUES (5,'Bologna',3)
+INSERT INTO City VALUES (6,'Toronto',4)
+INSERT INTO City VALUES (7,'Ottawa',4)
+INSERT INTO City VALUES (8,'Tokyo',5)
+INSERT INTO City VALUES (9,'Dallas',6)
+INSERT INTO City VALUES (10,'New York',6)
 
 
-INSERT INTO Branch VALUES ('CanST_01',1)
-INSERT INTO Branch VALUES ('CanST_02',3)
-INSERT INTO Branch VALUES ('CanST_03',4)
-INSERT INTO Branch VALUES ('CanST_04',6)
-INSERT INTO Branch VALUES ('CanST_05',1)
-INSERT INTO Branch VALUES ('CanST_06',10)
-INSERT INTO Branch VALUES ('CanST_07',7)
-INSERT INTO Branch VALUES ('CanST_08',2)
-INSERT INTO Branch VALUES ('CanST_09',5)
-INSERT INTO Branch VALUES ('CanST_10',9)
-INSERT INTO Branch VALUES ('CanST_11',2)
-INSERT INTO Branch VALUES ('CanST_12',8)
+INSERT INTO Branch VALUES (1,'CanST_01',1)
+INSERT INTO Branch VALUES (2,'CanST_02',3)
+INSERT INTO Branch VALUES (3,'CanST_03',4)
+INSERT INTO Branch VALUES (4,'CanST_04',6)
+INSERT INTO Branch VALUES (5,'CanST_05',1)
+INSERT INTO Branch VALUES (6,'CanST_06',10)
+INSERT INTO Branch VALUES (7,'CanST_07',7)
+INSERT INTO Branch VALUES (8,'CanST_08',2)
+INSERT INTO Branch VALUES (9,'CanST_09',5)
+INSERT INTO Branch VALUES (10,'CanST_10',9)
+INSERT INTO Branch VALUES (11,'CanST_11',2)
+INSERT INTO Branch VALUES (12,'CanST_12',8)
 
 
-INSERT INTO Manager VALUES ('Michael','Halpert','032-3295023',1)
-INSERT INTO Manager VALUES ('Andy','Levinson','065-7218492',2)
-INSERT INTO Manager VALUES ('Josh','Wallace','096-8329213',3)
-INSERT INTO Manager VALUES ('Andy','Levinson','084-4235784',4)
-INSERT INTO Manager VALUES ('Angela','Kapoor','023-9183923',5)
-INSERT INTO Manager VALUES ('Martin','Bridge','099-1359523',6)
-INSERT INTO Manager VALUES ('Jan','Bernard','076-9173719',7)
-INSERT INTO Manager VALUES ('David','Green','038-8885234',8)
-INSERT INTO Manager VALUES ('James','Smith','055-4637223',9)
-INSERT INTO Manager VALUES ('Evelyn','ALbro','018-9423596',10)
+INSERT INTO Manager VALUES (1,'Michael','Halpert','032-3295023',1)
+INSERT INTO Manager VALUES (2,'Andy','Levinson','065-7218492',2)
+INSERT INTO Manager VALUES (3,'Josh','Wallace','096-8329213',3)
+INSERT INTO Manager VALUES (4,'Andy','Levinson','084-4235784',4)
+INSERT INTO Manager VALUES (5,'Angela','Kapoor','023-9183923',5)
+INSERT INTO Manager VALUES (6,'Martin','Bridge','099-1359523',6)
+INSERT INTO Manager VALUES (7,'Jan','Bernard','076-9173719',7)
+INSERT INTO Manager VALUES (8,'David','Green','038-8885234',8)
+INSERT INTO Manager VALUES (9,'James','Smith','055-4637223',9)
+INSERT INTO Manager VALUES (10,'Evelyn','ALbro','018-9423596',10)
 
