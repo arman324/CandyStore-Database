@@ -10,17 +10,17 @@ create table Product (
     PRIMARY KEY (ProductId)
 )
 
-create table Country( --The name of the country that the CandyStore has a branch in this country
+create table Country ( 
     CountryId int IDENTITY(1,1),
     CountryName varchar(20) not null UNIQUE,
-    CountryCode varchar(5) not null, --US , FR , DE
+    CountryCode varchar(5) not null, 
     ContinentName varchar (20) not null,
     PRIMARY KEY (CountryId)
 )
 
 create table City (
     CityId int IDENTITY(1,1),
-    CityName varchar(30) not null,
+    CityName varchar(30) not null UNIQUE,
     CountryId int,
     PRIMARY KEY (CityId),
     FOREIGN KEY(CountryId) references Country(CountryId)
@@ -90,12 +90,23 @@ create table InvoiceDetail (
     FOREIGN KEY(ProductId) references Product(ProductId)
 )
 
-select * from Country
+
 INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
 INSERT INTO Country VALUES ('France', 'FR' , 'Europe')
 INSERT INTO Country VALUES ('Italy', 'IT' , 'Europe')
 INSERT INTO Country VALUES ('Canada', 'CA' , 'North America')
 INSERT INTO Country VALUES ('Japan', 'JA' , 'Asia')
 INSERT INTO Country VALUES ('USA', 'US' , 'North America')
-INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
+
+
+INSERT INTO City VALUES ('Berlin',1)
+INSERT INTO City VALUES ('Munich',1)
+INSERT INTO City VALUES ('Leipzig',1)
+INSERT INTO City VALUES ('Paris',2)
+INSERT INTO City VALUES ('Bologna',3)
+INSERT INTO City VALUES ('Toronto',4)
+INSERT INTO City VALUES ('Ottawa',4)
+INSERT INTO City VALUES ('Tokyo',5)
+INSERT INTO City VALUES ('Dallas',6)
+INSERT INTO City VALUES ('New York',6)
 
