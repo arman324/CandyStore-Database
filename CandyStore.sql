@@ -39,7 +39,7 @@ create table Customer (
     CustomerId INT,
     CustomerName varchar(30) not null,
     CustomerLastName varchar(30) not null,
-    PhoneNumber varchar(12),
+    PhoneNumber varchar(15),
     CityId int,
     PRIMARY KEY (CustomerId),
     FOREIGN KEY(CityId) references City(CityId)
@@ -203,3 +203,44 @@ INSERT INTO Product VALUES (17,'Skittles Candy','Colorful','2020-02-04','2022-02
 INSERT INTO Product VALUES (18,'M&M''s Candy','Colorful','2020-04-26','2023-04-26',4.69)
 INSERT INTO Product VALUES (19,'Life Savers Candy','Colorful','2020-03-13','2021-03-13',8.99)
 INSERT INTO Product VALUES (20,'Laffy Taffy','Pink','2020-02-02','2021-02-02',2.69)
+
+
+INSERT INTO Customer VALUES (1,'Bristol','King','+49-3423132342',1)
+INSERT INTO Customer VALUES (2,'Trenton','Maul','+49-9995043423',1)
+INSERT INTO Customer VALUES (3,'Edith','Leatherwood','+49-5993430234',1)
+INSERT INTO Customer VALUES (4,'Scott','Lloyd','+49-9576844445',1)
+INSERT INTO Customer VALUES (5,'Taylor','Henslee','+49-3239995323',2)
+INSERT INTO Customer VALUES (6,'Duke','Martin','+49-8394923034',2)
+INSERT INTO Customer VALUES (7,'Reign','Henton','+49-7534523492',2)
+INSERT INTO Customer VALUES (8,'Ryland','Jenkins','+49-9434023432',2)
+INSERT INTO Customer VALUES (9,'Tatum','Matson','+49-8884934888',3)
+INSERT INTO Customer VALUES (10,'Edison','Leavey','+49-7535342342',3)
+INSERT INTO Customer VALUES (11,'Cannon','Leeman','+49-8859459346',3)
+INSERT INTO Customer VALUES (12,'Sutton','Rogers','+33-9593000443',4)
+INSERT INTO Customer VALUES (13,'Keaton','Howard','+33-0392343745',4)
+INSERT INTO Customer VALUES (14,'Brock','Kimball','+39-5382341312',5)
+INSERT INTO Customer VALUES (15,'Lewis','Inscoe','+39-9430329342',5)
+INSERT INTO Customer VALUES (16,'Charley','Adams','+39-8392013234',5)
+INSERT INTO Customer VALUES (17,'Mae','Kettell','+39-6630329342',5)
+INSERT INTO Customer VALUES (18,'Macy','Barnes','+1-9943832733',6)
+INSERT INTO Customer VALUES (19,'Axton','Spencer','+1-3234338853',6)
+INSERT INTO Customer VALUES (20,'Henley','Webster','+1-4834300948',7)
+INSERT INTO Customer VALUES (21,'Colby','Ives','+1-9493843448',7)
+INSERT INTO Customer VALUES (22,'Trey','Wilkinson','+1-8884309993',7)
+INSERT INTO Customer VALUES (23,'Anne','Lee','+1-2777332832',7)
+INSERT INTO Customer VALUES (24,'Dorothy','Young','+81-8934534233',8)
+INSERT INTO Customer VALUES (25,'Quinton','Lopez','+81-1119231342',8)
+INSERT INTO Customer VALUES (26,'Crew','Kin','+81-5119923342',8)
+INSERT INTO Customer VALUES (27,'Rosie','Gibson','+81-2992333342',8)
+INSERT INTO Customer VALUES (28,'Wilson','Wright','+1-8832732313',9)
+INSERT INTO Customer VALUES (29,'Aubrie','Scott','+1-8990392342',9)
+INSERT INTO Customer VALUES (30,'Ivory','Kindrick','+1-3333852332',10)
+INSERT INTO Customer VALUES (31,'Fletcher','Robinson','+1-9999000323',10)
+INSERT INTO Customer VALUES (32,'Braden','Jagger','+1-7723832342',10)
+INSERT INTO Customer VALUES (33,'Alden','Hemby','+1-8882934234',10)
+INSERT INTO Customer VALUES (34,'Briggs','Isle','+1-9983473432',10)
+INSERT INTO Customer VALUES (35,'Lilian','Corbyn','+1-9983723423',10)
+INSERT INTO Customer VALUES (36,'Sam','Butler','+1-7890903231',10)
+INSERT INTO Customer VALUES (37,'Mitchell','Ward','+1-6627307429',10)
+INSERT INTO Customer VALUES (38,'Chris','Harrison','+1-8883923833',10)
+INSERT INTO Customer VALUES (39,'Wilder','Edwards','+49-2303495320',1)
