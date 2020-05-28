@@ -1,111 +1,4 @@
-USE CandyStore
-Go
-
-create table Product (
-    ProductId INT,
-    Name varchar(50) not null,
-    Color varchar(20),
-    ProductionDate date not null,
-    ExpirationDate date not null,
-    Price NUMERIC (10,2) not null,
-    PRIMARY KEY (ProductId)
-)
-
-create table Country ( 
-    CountryId INT IDENTITY(1,1),
-    CountryName varchar(20) not null UNIQUE,
-    CountryCode varchar(5) not null, 
-    ContinentName varchar (20) not null,
-    PRIMARY KEY (CountryId)
-)
-
-create table City (
-    CityId INT,
-    CityName varchar(30) not null UNIQUE,
-    CountryId int,
-    PRIMARY KEY (CityId),
-    FOREIGN KEY(CountryId) references Country(CountryId)
-)
-
-create table Branch (
-    BranchId INT,
-    BranchName varchar(30) not null UNIQUE,
-    CityId int,
-    PRIMARY KEY (BranchId),
-    FOREIGN KEY(CityId) references City(CityId)
-)
-
-create table Customer (
-    CustomerId INT,
-    CustomerName varchar(30) not null,
-    CustomerLastName varchar(30) not null,
-    PhoneNumber varchar(15),
-    CityId int,
-    PRIMARY KEY (CustomerId),
-    FOREIGN KEY(CityId) references City(CityId)
-)
-
-
-create table Manager (
-    ManagerId INT,
-    ManagerName varchar(30) not null,
-    ManagerLastName varchar(30) not null,
-    NationalCode varchar(20) UNIQUE,
-    BranchId int,
-    PRIMARY KEY (ManagerId),
-    FOREIGN KEY(BranchId) references Branch(BranchId)
-)
-
-create table Employee (
-    EmployeeId INT,
-    EmployeeName varchar(30) not null,
-    EmployeeLastName varchar(30) not null,
-    Role varchar(20) not null,
-    NationalCode varchar(20) UNIQUE,
-    BranchId int,
-    PRIMARY KEY (EmployeeId),
-    CHECK (Role in ('Cashier','Delivery Driver','Custodian')),
-    FOREIGN KEY(BranchId) references Branch(BranchId)
-)
-
-create table BirthdayService (
-    BirthdayServiceId INT,
-    ServiceName varchar(30),
-    Description varchar(120),
-    Price NUMERIC (10,2) not null,
-    PRIMARY KEY (BirthdayServiceId)
-)
-
-create table InvoiceHeader (
-    InvoiceHeaderId INT,
-    CustomerId INT,
-    BranchId INT,
-    BirthdayServiceStatus VARCHAR(4),
-    BirthdayServiceId INT,
-    TotalCost NUMERIC(10,2),
-    OrderDate TIMESTAMP not null,
-    EmployeeId INT,
-    PRIMARY KEY (InvoiceHeaderId),
-    CHECK (BirthdayServiceStatus in ('YES','NO')),
-    FOREIGN KEY(BirthdayServiceId) references BirthdayService(BirthdayServiceId),
-    FOREIGN KEY(CustomerId) references Customer(CustomerId),
-    FOREIGN KEY(BranchId) references Branch(BranchId),
-    FOREIGN KEY(EmployeeId) references Employee(EmployeeId)
-)
-
-create table InvoiceDetail (
-    InvoiceDetailId INT,
-    InvoiceHeaderId INT,
-    ProductId INT,
-    quantity BIGINT,
-    UnitPrice NUMERIC(10,2),
-    RowCost NUMERIC(10,2),
-    PRIMARY KEY (InvoiceDetailId),
-    FOREIGN KEY(InvoiceHeaderId) references InvoiceHeader(InvoiceHeaderId),
-    FOREIGN KEY(ProductId) references Product(ProductId)
-)
-
-
+--Country
 INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
 INSERT INTO Country VALUES ('France', 'FR' , 'Europe')
 INSERT INTO Country VALUES ('Italy', 'IT' , 'Europe')
@@ -115,6 +8,7 @@ INSERT INTO Country VALUES ('USA', 'US' , 'North America')
 INSERT INTO Country VALUES ('sd', 'US' , 'North America')
 
 
+--City
 INSERT INTO City VALUES (1,'Berlin',1)
 INSERT INTO City VALUES (2,'Munich',1)
 INSERT INTO City VALUES (3,'Leipzig',1)
@@ -127,6 +21,7 @@ INSERT INTO City VALUES (9,'Dallas',6)
 INSERT INTO City VALUES (10,'New York',6)
 
 
+--Branch
 INSERT INTO Branch VALUES (1,'CanST_01',1)
 INSERT INTO Branch VALUES (2,'CanST_02',3)
 INSERT INTO Branch VALUES (3,'CanST_03',4)
@@ -141,6 +36,7 @@ INSERT INTO Branch VALUES (11,'CanST_11',2)
 INSERT INTO Branch VALUES (12,'CanST_12',8)
 
 
+--Manager
 INSERT INTO Manager VALUES (1,'Michael','Halpert','032-3295023',1)
 INSERT INTO Manager VALUES (2,'Andy','Levinson','065-7218492',2)
 INSERT INTO Manager VALUES (3,'Josh','Wallace','096-8329213',3)
@@ -153,6 +49,7 @@ INSERT INTO Manager VALUES (9,'James','Smith','055-4637223',9)
 INSERT INTO Manager VALUES (10,'Evelyn','ALbro','018-9423596',10)
 
 
+--Employee
 INSERT INTO Employee VALUES (1,'Avery','Albin','Cashier','043-8422023',1)
 INSERT INTO Employee VALUES (2,'Jackson','Barks','Custodian','011-6245234',1)
 INSERT INTO Employee VALUES (3,'Madison','Basil','Delivery Driver','033-0032833',1)
@@ -183,6 +80,7 @@ INSERT INTO Employee VALUES (27,'Peyton','Halpert','Cashier','002-9993281',12)
 INSERT INTO Employee VALUES (28,'Harley','Hardison','Custodian','062-0129313',12)
 
 
+--Product
 INSERT INTO Product VALUES (1,'Nik-L-Nips Wax Bottles Candy','Colorful','2020-04-22','2022-04-22',5.99)
 INSERT INTO Product VALUES (2,'Necco Wafers Candy','Colorful','2020-01-25','2021-01-25',3.69)
 INSERT INTO Product VALUES (3,'Sugar Daddy Milk Caramel Pops','Brown','2020-02-15','2022-02-15',6.99)
@@ -205,6 +103,7 @@ INSERT INTO Product VALUES (19,'Life Savers Candy','Colorful','2020-03-13','2021
 INSERT INTO Product VALUES (20,'Laffy Taffy','Pink','2020-02-02','2021-02-02',2.69)
 
 
+--Customer
 INSERT INTO Customer VALUES (1,'Bristol','King','+49-3423132342',1)
 INSERT INTO Customer VALUES (2,'Trenton','Maul','+49-9995043423',1)
 INSERT INTO Customer VALUES (3,'Edith','Leatherwood','+49-5993430234',1)
@@ -245,6 +144,8 @@ INSERT INTO Customer VALUES (37,'Mitchell','Ward','+1-6627307429',10)
 INSERT INTO Customer VALUES (38,'Chris','Harrison','+1-8883923833',10)
 INSERT INTO Customer VALUES (39,'Wilder','Edwards','+49-2303495320',1)
 
+
+--BirthdayService
 INSERT INTO BirthdayService VALUES (0,'Not used','The customer doesn''t use birthday services.',0.00)
 INSERT INTO BirthdayService VALUES (1,'Firework Birthday Party','Make the new freedom the center of your birthday party by including fireworks.',39.99)
 INSERT INTO BirthdayService VALUES (2,'Sports Birthday Party','Decorate the food with the honoree’s favorite sport. This means football candy or baseball chocolate.',49.69)
