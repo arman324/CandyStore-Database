@@ -244,3 +244,7 @@ INSERT INTO Customer VALUES (36,'Sam','Butler','+1-7890903231',10)
 INSERT INTO Customer VALUES (37,'Mitchell','Ward','+1-6627307429',10)
 INSERT INTO Customer VALUES (38,'Chris','Harrison','+1-8883923833',10)
 INSERT INTO Customer VALUES (39,'Wilder','Edwards','+49-2303495320',1)
+
+INSERT INTO BirthdayService VALUES (0,'Not used','The customer doesn''t use birthday services.',0.00)
+INSERT INTO BirthdayService VALUES (1,'Firework Birthday Party','Make the new freedom the center of your birthday party by including fireworks.',39.99)
+INSERT INTO BirthdayService VALUES (2,'Sports Birthday Party','Decorate the food with the honoree’s favorite sport. This means football candy or baseball chocolate.',49.69)
