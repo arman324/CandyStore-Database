@@ -83,7 +83,7 @@ create table InvoiceHeader (
     BirthdayServiceStatus VARCHAR(4),
     BirthdayServiceId INT,
     TotalCost NUMERIC(10,2),
-    OrderDate TIMESTAMP not null,
+    OrderDate DATE not null,
     EmployeeId INT,
     PRIMARY KEY (InvoiceHeaderId),
     CHECK (BirthdayServiceStatus in ('YES','NO')),

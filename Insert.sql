@@ -1,3 +1,6 @@
+USE CandyStore
+Go
+
 --Country
 INSERT INTO Country VALUES ('Germany', 'DE' , 'Europe')
 INSERT INTO Country VALUES ('France', 'FR' , 'Europe')
@@ -149,3 +152,43 @@ INSERT INTO Customer VALUES (39,'Wilder','Edwards','+49-2303495320',1)
 INSERT INTO BirthdayService VALUES (0,'Not used','The customer doesn''t use birthday services.',0.00)
 INSERT INTO BirthdayService VALUES (1,'Firework Birthday Party','Make the new freedom the center of your birthday party by including fireworks.',39.99)
 INSERT INTO BirthdayService VALUES (2,'Sports Birthday Party','Decorate the food with the honoree’s favorite sport. This means football candy or baseball chocolate.',49.69)
+
+
+--InvoiceHeader
+INSERT INTO InvoiceHeader VALUES (1,1,1,'NO',0,77.92,'2020-04-22',1)
+INSERT INTO InvoiceHeader VALUES (2,1,5,'YES',2,245.79,'2019-12-17',12)
+INSERT INTO InvoiceHeader VALUES (3,6,11,'No',0,225.43,'2020-02-13',25)
+INSERT INTO InvoiceHeader VALUES (4,35,6,'No',0,373.45,'2020-03-05',14)
+INSERT INTO InvoiceHeader VALUES (5,22,7,'YES',1,294.26,'2019-12-27',17)
+INSERT INTO InvoiceHeader VALUES (6,14,9,'NO',0,200.33,'2019-12-08',21)
+INSERT INTO InvoiceHeader VALUES (7,20,7,'NO',0,34.58,'2020-02-19',17)
+INSERT INTO InvoiceHeader VALUES (8,10,2,'NO',0,18.83,'2020-04-10',5)
+INSERT INTO InvoiceHeader VALUES (9,28,10,'NO',0,69.86,'2020-03-01',23)
+INSERT INTO InvoiceHeader VALUES (10,13,3,'NO',0,125.23,'2019-12-19',7)
+
+
+--InvoiceDetail
+INSERT INTO InvoiceDetail VALUES (1,1,1,5,5.99,29.95)
+INSERT INTO InvoiceDetail VALUES (2,1,20,3,2.69,8.07)
+INSERT INTO InvoiceDetail VALUES (3,1,13,10,3.99,39.90)
+INSERT INTO InvoiceDetail VALUES (4,2,3,3,6.99,20.97)
+INSERT INTO InvoiceDetail VALUES (5,2,19,12,8.99,107.88)
+INSERT INTO InvoiceDetail VALUES (6,2,20,25,2.69,67.25)
+INSERT INTO InvoiceDetail VALUES (7,3,9,40,2.99,119.6)
+INSERT INTO InvoiceDetail VALUES (8,3,12,10,6.69,66.9)
+INSERT INTO InvoiceDetail VALUES (9,3,2,3,3.69,11.07)
+INSERT INTO InvoiceDetail VALUES (10,3,4,14,1.99,27.86)
+INSERT INTO InvoiceDetail VALUES (11,4,17,35,7.99,279.65)
+INSERT INTO InvoiceDetail VALUES (12,4,8,20,4.69,93.8)
+INSERT INTO InvoiceDetail VALUES (13,5,5,10,7.69,76.9)
+INSERT INTO InvoiceDetail VALUES (14,5,14,13,5.99,77.87)
+INSERT INTO InvoiceDetail VALUES (15,5,10,50,1.99,99.5)
+INSERT INTO InvoiceDetail VALUES (16,6,7,67,2.99,200.33)
+INSERT INTO InvoiceDetail VALUES (17,7,18,2,4.69,9.38)
+INSERT INTO InvoiceDetail VALUES (18,7,2,4,3.69,14.76)
+INSERT INTO InvoiceDetail VALUES (19,7,4,1,1.99,1.99)
+INSERT INTO InvoiceDetail VALUES (20,7,11,5,1.69,8.45)
+INSERT INTO InvoiceDetail VALUES (21,8,20,7,2.69,18.83)
+INSERT INTO InvoiceDetail VALUES (22,9,6,14,4.99,69.86)
+INSERT INTO InvoiceDetail VALUES (23,10,15,2,2.69,5.38)
+INSERT INTO InvoiceDetail VALUES (24,10,17,15,7.99,119.85)
