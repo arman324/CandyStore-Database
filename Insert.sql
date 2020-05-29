@@ -8,7 +8,6 @@ INSERT INTO Country VALUES ('Italy', 'IT' , 'Europe')
 INSERT INTO Country VALUES ('Canada', 'CA' , 'North America')
 INSERT INTO Country VALUES ('Japan', 'JA' , 'Asia')
 INSERT INTO Country VALUES ('USA', 'US' , 'North America')
-INSERT INTO Country VALUES ('sd', 'US' , 'North America')
 
 
 --City
