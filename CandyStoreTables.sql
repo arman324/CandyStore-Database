@@ -2,7 +2,7 @@ USE CandyStore
 Go
 
 create table Product (
-    ProductId INT,
+    ProductId INT IDENTITY(1,1),
     Name varchar(50) not null,
     Color varchar(20),
     ProductionDate date not null,
@@ -20,7 +20,7 @@ create table Country (
 )
 
 create table City (
-    CityId INT,
+    CityId INT IDENTITY(1,1),
     CityName varchar(30) not null UNIQUE,
     CountryId int,
     PRIMARY KEY (CityId),
@@ -28,7 +28,7 @@ create table City (
 )
 
 create table Branch (
-    BranchId INT,
+    BranchId INT IDENTITY(1,1),
     BranchName varchar(30) not null UNIQUE,
     CityId int,
     PRIMARY KEY (BranchId),
@@ -36,7 +36,7 @@ create table Branch (
 )
 
 create table Customer (
-    CustomerId INT,
+    CustomerId INT IDENTITY(1,1),
     CustomerName varchar(30) not null,
     CustomerLastName varchar(30) not null,
     PhoneNumber varchar(15),
@@ -47,7 +47,7 @@ create table Customer (
 
 
 create table Manager (
-    ManagerId INT,
+    ManagerId INT IDENTITY(1,1),
     ManagerName varchar(30) not null,
     ManagerLastName varchar(30) not null,
     NationalCode varchar(20) UNIQUE,
@@ -57,7 +57,7 @@ create table Manager (
 )
 
 create table Employee (
-    EmployeeId INT,
+    EmployeeId INT IDENTITY(1,1),
     EmployeeName varchar(30) not null,
     EmployeeLastName varchar(30) not null,
     Role varchar(20) not null,
@@ -77,7 +77,7 @@ create table BirthdayService (
 )
 
 create table InvoiceHeader (
-    InvoiceHeaderId INT,
+    InvoiceHeaderId INT IDENTITY(1,1),
     CustomerId INT,
     BranchId INT,
     BirthdayServiceStatus VARCHAR(4),
@@ -94,7 +94,7 @@ create table InvoiceHeader (
 )
 
 create table InvoiceDetail (
-    InvoiceDetailId INT,
+    InvoiceDetailId INT IDENTITY(1,1),
     InvoiceHeaderId INT,
     ProductId INT,
     quantity BIGINT,
