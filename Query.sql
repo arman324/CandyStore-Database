@@ -9,6 +9,12 @@ select * from Country
 select * from InvoiceHeader
 select * from InvoiceDetail
 
+select * from vManagerOfBranch
+select * from vSumTotalForEachCustomer
+select * from vlistOfAllDeliveryDrivers
+select * from vEmployee
+select * from vManager
+
 -- Query 1
 select Customer.CustomerName + ' ' + Customer.CustomerLastName as Name, Country.CountryName, Country.ContinentName
 from Customer 

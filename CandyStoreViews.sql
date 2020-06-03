@@ -23,3 +23,21 @@ create view vSumTotalForEachCustomer AS
        ON (myTable.id = Customer.CustomerId)
 
 
+create view vEmployee AS
+    select [EmployeeId], EmployeeName + ' ' + EmployeeLastName as EmployeeName, Role, BranchName
+    from Employee 
+     inner join Branch
+      ON(Employee.BranchId = Branch.BranchId)
+
+
+create view vlistOfAllDeliveryDrivers AS
+    select * 
+    from vEmployee
+    where Role = 'Delivery Driver'
+
+
+create view vManager AS
+    select ManagerId, ManagerName + ' ' + ManagerLastName as ManagerName, BranchName
+    from Manager 
+     inner join Branch
+      ON(Manager.BranchId = Branch.BranchId)
