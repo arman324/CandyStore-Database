@@ -97,3 +97,12 @@ GROUP BY GROUPING SETS(
     (Country.ContinentName)
 ) 
 order by Country.CountryName, Country.ContinentName   
+
+-- Query 6
+select dbo.PhoneNumber_Country ('+49-3423132342') As Country
+select dbo.PhoneNumber_Country ('+33-9593000443') As Country
+select dbo.PhoneNumber_Country ('+39-8392013234') As Country
+select dbo.PhoneNumber_Country ('+1-9943832733') As Country
+select dbo.PhoneNumber_Country ('+81-8934534233') As Country
+select dbo.PhoneNumber_Country ('+98-9842732613') As Country
+
