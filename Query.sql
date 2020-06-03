@@ -111,3 +111,14 @@ select * from dbo.ManagerInformation(2)
 select * from dbo.ManagerInformation(5)
 select * from dbo.ManagerInformation(7)
 select * from dbo.ManagerInformation(10)
+
+-- Query 8
+with newTable (ProductID, Name, SumOfQuantity) AS
+    (select *
+    from LovelyProduct)
+
+select Product.ProductId, Product.Name, ISNULL(SumOfQuantity, 0) as TotalSale
+from newTable right join Product
+ ON (newTable.ProductID = Product.ProductId)
+ order by SumOfQuantity desc
+
