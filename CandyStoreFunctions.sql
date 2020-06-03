@@ -42,3 +42,29 @@ CREATE FUNCTION ManagerInformation (@Id INT)
           ON (Manager.BranchId = Branch.BranchId)
         WHERE Manager.ManagerId = @Id
 
+
+-- FUNCTION 3
+create FUNCTION Countries_date (@year int,
+                         @name varchar(50)
+                        )
+    returns table 
+
+    as 
+
+        return 
+              
+            select Distinct Product.Name, CountryName
+            from InvoiceDetail
+                inner join InvoiceHeader
+                on (InvoiceDetail.InvoiceHeaderId = InvoiceHeader.InvoiceHeaderId)
+                inner join Branch
+                    on (InvoiceHeader.BranchId = Branch.BranchId)
+                inner join City
+                    on (City.CityId = Branch.CityId)
+                inner join Country
+                    on (Country.CountryId = City.CountryId)
+                inner join Product
+                    on (InvoiceDetail.ProductId = Product.ProductId)
+            where (Product.Name = @name) 
+                    and 
+                   (year(InvoiceHeader.OrderDate) = @year)

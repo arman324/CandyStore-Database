@@ -98,6 +98,7 @@ GROUP BY GROUPING SETS(
 ) 
 order by Country.CountryName, Country.ContinentName   
 
+
 -- Query 6
 select dbo.PhoneNumber_Country ('+49-3423132342') As Country
 select dbo.PhoneNumber_Country ('+33-9593000443') As Country
@@ -106,11 +107,13 @@ select dbo.PhoneNumber_Country ('+1-9943832733') As Country
 select dbo.PhoneNumber_Country ('+81-8934534233') As Country
 select dbo.PhoneNumber_Country ('+98-9842732613') As Country
 
+
 -- Query 7
 select * from dbo.ManagerInformation(2)
 select * from dbo.ManagerInformation(5)
 select * from dbo.ManagerInformation(7)
 select * from dbo.ManagerInformation(10)
+
 
 -- Query 8
 with newTable (ProductID, Name, SumOfQuantity) AS
@@ -121,4 +124,5 @@ select Product.ProductId, Product.Name, ISNULL(SumOfQuantity, 0) as TotalSale
 from newTable right join Product
  ON (newTable.ProductID = Product.ProductId)
  order by SumOfQuantity desc
+
 
