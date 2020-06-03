@@ -126,3 +126,17 @@ from newTable right join Product
  order by SumOfQuantity desc
 
 
+-- Query 9
+select * 
+from dbo.Countries_date(2019,'Sugar Daddy Milk Caramel Pops')
+order by CountryName
+
+select * 
+from dbo.Countries_date(2020,'Necco Wafers Candy')
+order by CountryName
+
+select * 
+from dbo.Countries_date(2019,'Salt Water Taffy')
+order by CountryName
+
+
