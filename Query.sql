@@ -37,10 +37,10 @@ on (Country.CountryName = newTable1.CountryName)
 ORDER BY TotalSales DESC
 
 -- Query 3
-select CONCAT(Manager.ManagerName, CONCAT (' ',ManagerLastName)) as ManagerName, BranchName, CityName
-from Branch
- inner join Manager
-  ON(Branch.BranchId = Manager.BranchId)
+select vSumTotalForEachCustomer.CustomerID, vSumTotalForEachCustomer.CustomerName, vSumTotalForEachCustomer."Sum total of all Purchases over the time", CityName
+from vSumTotalForEachCustomer
+ inner join Customer
+  ON (vSumTotalForEachCustomer.CustomerID = Customer.CustomerId)
  inner join City
-  ON(Branch.CityId = City.CityId)
-ORDER BY CityName
+   ON (Customer.CityId = City.CityId)
+order by 'Sum total of all Purchases over the time' DESC
