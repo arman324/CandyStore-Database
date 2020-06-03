@@ -1,6 +1,8 @@
 USE CandyStore
 Go
 
+
+-- VIEW 1
 create view vManagerOfBranch AS
     select CONCAT(Manager.ManagerName, CONCAT (' ',ManagerLastName)) as ManagerName, BranchName, CityName
     from Branch
@@ -10,6 +12,7 @@ create view vManagerOfBranch AS
       ON(Branch.CityId = City.CityId)
 
 
+-- VIEW 2
 create view vSumTotalForEachCustomer AS
     with myTable(id, sumTotal) AS 
         (select Customer.CustomerId, SUM (TotalCost) as sumTotal
@@ -23,6 +26,7 @@ create view vSumTotalForEachCustomer AS
        ON (myTable.id = Customer.CustomerId)
 
 
+-- VIEW 3
 create view vEmployee AS
     select [EmployeeId], EmployeeName + ' ' + EmployeeLastName as EmployeeName, Role, BranchName
     from Employee 
@@ -30,14 +34,28 @@ create view vEmployee AS
       ON(Employee.BranchId = Branch.BranchId)
 
 
+-- VIEW 4
 create view vlistOfAllDeliveryDrivers AS
     select * 
     from vEmployee
     where Role = 'Delivery Driver'
 
 
+-- VIEW 5
 create view vManager AS
     select ManagerId, ManagerName + ' ' + ManagerLastName as ManagerName, BranchName
     from Manager 
      inner join Branch
       ON(Manager.BranchId = Branch.BranchId)
+
+-- VIEW 6
+create view LovelyProduct AS
+    with myTable (ProductId, SumOfQuantity) AS
+        (select ProductId, SUM(quantity) as SumOfQuantity
+        from InvoiceDetail
+        GROUP BY ProductId)
+    select Product.ProductId, Name, SumOfQuantity
+    from myTable 
+     inner join Product
+      ON (myTable.ProductId = Product.ProductId)
+

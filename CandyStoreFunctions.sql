@@ -2,6 +2,7 @@ USE CandyStore
 Go
 
 
+--FUNCTION 1
 CREATE FUNCTION PhoneNumber_Country (@PhoneNumber VARCHAR(15))
     RETURNS VARCHAR(60)
     BEGIN
@@ -29,6 +30,7 @@ CREATE FUNCTION PhoneNumber_Country (@PhoneNumber VARCHAR(15))
 END
 
 
+--FUNCTION 2
 CREATE FUNCTION ManagerInformation (@Id INT)
     RETURNS TABLE
     AS
