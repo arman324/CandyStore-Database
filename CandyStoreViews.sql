@@ -9,6 +9,7 @@ create view vManagerOfBranch AS
      inner join City
       ON(Branch.CityId = City.CityId)
 
+
 create view vSumTotalForEachCustomer AS
     with myTable(id, sumTotal) AS 
         (select Customer.CustomerId, SUM (TotalCost) as sumTotal
