@@ -106,3 +106,8 @@ select dbo.PhoneNumber_Country ('+1-9943832733') As Country
 select dbo.PhoneNumber_Country ('+81-8934534233') As Country
 select dbo.PhoneNumber_Country ('+98-9842732613') As Country
 
+-- Query 7
+select * from dbo.ManagerInformation(2)
+select * from dbo.ManagerInformation(5)
+select * from dbo.ManagerInformation(7)
+select * from dbo.ManagerInformation(10)
