@@ -59,7 +59,7 @@ with myTable(BranchId, TotalCost) AS
     from InvoiceHeader
     group by (BranchId))
 
-select BranchName, myTable.TotalCost
+select BranchName, myTable.TotalCost, RANK() OVER (order by myTable.TotalCost desc) as Ranking
 from myTable 
  inner join Branch
   ON (myTable.BranchId = Branch.BranchId)
