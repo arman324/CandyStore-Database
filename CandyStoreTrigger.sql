@@ -20,7 +20,7 @@ select * from CustomerPhoneNumber
 
 
 -- TRIGGER 2
-alter TRIGGER CheckNationalCode
+create TRIGGER CheckNationalCode
  on Manager
  AFTER INSERT
  AS
@@ -33,5 +33,25 @@ alter TRIGGER CheckNationalCode
  UPDATE Manager
  set NationalCode = CONCAT(SUBSTRING(@nationalCode,1,3),CONCAT('-',SUBSTRING(@nationalCode,4,len(@nationalCode))))
  where ManagerId = (select ManagerId from inserted)
+
+
+-- TRIGGER 3
+CREATE TRIGGER ModifyGetDate
+ on InvoiceHeader
+ AFTER INSERT
+ as 
+ DECLARE @BirthDayServiceId INT;
+ Declare @YES_NO varchar(3);
+ set @BirthDayServiceId = (select BirthdayServiceId from inserted)
+ 
+   if @BirthDayServiceId = 0
+    set @YES_NO = 'NO'
+    else 
+    set @YES_NO = 'YES'
+ 
+    UPDATE InvoiceHeader
+    set BirthdayServiceStatus = @YES_NO
+    where InvoiceHeaderId = (select InvoiceHeaderId from inserted)
+
 
 
