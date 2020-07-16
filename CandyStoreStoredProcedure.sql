@@ -27,3 +27,17 @@ EXECUTE CheckExpirationDate
 
 
 -- STORED PROCEDURE 3
+create PROCEDURE ComputeTotalCostForInvoiceHeader(@invoiceHeaderId int)
+as 
+BEGIN
+    update InvoiceHeader
+    set TotalCost = (select SUM(RowCost) as totalCost
+                    from InvoiceDetail
+                    where InvoiceHeaderId = @invoiceHeaderId
+                    GROUP BY InvoiceHeaderId)
+    where InvoiceHeaderId = @invoiceHeaderId
+END
+
+EXECUTE ComputeTotalCostForInvoiceHeader 11
+
+
