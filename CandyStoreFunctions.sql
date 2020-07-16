@@ -26,7 +26,7 @@ CREATE FUNCTION PhoneNumber_Country (@PhoneNumber VARCHAR(15))
                             ELSE 
                              SET @CountryName = @PhoneNumber + ' isn''t recognizable';
 
-    RETURN @CountryName                             
+    RETURN @CountryName                      
 END
 
 
@@ -68,3 +68,19 @@ create FUNCTION Countries_date (@year int,
             where (Product.Name = @name) 
                     and 
                    (year(InvoiceHeader.OrderDate) = @year)
+
+
+
+-- FUNCTION 4
+create FUNCTION PhoneNumber_Name (@PhoneNumber VARCHAR(15))
+    returns table 
+    as
+    return
+        select Customer.CustomerId, CustomerName, CustomerLastName, CityName 
+        from Customer inner join City
+                on (Customer.CityId = City.CityId)
+             inner join CustomerPhoneNumber
+                on (Customer.CustomerId = CustomerPhoneNumber.CustomerId)
+        where CustomerPhoneNumber.PhoneNumber = @PhoneNumber 
+                            
+

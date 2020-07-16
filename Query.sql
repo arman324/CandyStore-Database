@@ -1,6 +1,7 @@
 select * from BirthdayService
 select * from Product
 select * from Customer
+select * from CustomerPhoneNumber
 select * from Branch
 select * from Employee
 select * from Manager
@@ -140,3 +141,9 @@ from dbo.Countries_date(2019,'Salt Water Taffy')
 order by CountryName
 
 
+-- Query 10
+select * from PhoneNumber_Name('+1-8990392342')
+select * from PhoneNumber_Name('+49-9995043423')
+select * from PhoneNumber_Name('+49-7535388823')
+select * from PhoneNumber_Name('+1-8884309993')
+select * from PhoneNumber_Name('+49-2303495320')
