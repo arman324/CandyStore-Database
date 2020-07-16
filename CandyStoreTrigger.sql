@@ -8,16 +8,12 @@ create TRIGGER CheckPhoneNumber
  as 
  declare @PhoneNumber varchar(15);
  set @PhoneNumber = (select PhoneNumber from inserted)
- if (LEN(@PhoneNumber) < 12)
-  begin 
-        print 'Invalid phoneNumber - try again'   
-  end
-  else 
   insert into CustomerPhoneNumber 
   select CustomerId,concat('+',@PhoneNumber)
   from inserted 
 
 
-insert into CustomerPhoneNumber values(39,'49-2330')
 insert into CustomerPhoneNumber values(39,'49-2300000000')
+insert into CustomerPhoneNumber values(39,'230000000000')
+insert into CustomerPhoneNumber values(39,'49-2330')
 select * from CustomerPhoneNumber

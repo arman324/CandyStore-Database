@@ -7,7 +7,7 @@ create PROCEDURE CheckPhoneNumbersFormat
 AS
     BEGIN
         delete from CustomerPhoneNumber
-        where CHARINDEX('-', PhoneNumber) = 0 
+        where CHARINDEX('-', PhoneNumber) = 0 or LEN(PhoneNumber) < 12
 END
 
 EXECUTE CheckPhoneNumbersFormat
@@ -25,3 +25,5 @@ END
 
 EXECUTE CheckExpirationDate
 
+
+-- STORED PROCEDURE 3
