@@ -19,7 +19,7 @@ AS
     BEGIN
         select * 
         from Product
-        where CONVERT(date,getdate()) > ExpirationDate
+        where CONVERT(date,DATEADD(DAY, -90, GETDATE())) > ExpirationDate
 END
 
 
