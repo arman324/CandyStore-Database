@@ -147,3 +147,11 @@ select * from PhoneNumber_Name('+49-9995043423')
 select * from PhoneNumber_Name('+49-7535388823')
 select * from PhoneNumber_Name('+1-8884309993')
 select * from PhoneNumber_Name('+49-2303495320')
+
+
+-- Query 11
+select * from ID_phoneNumbers(1)
+select * from ID_phoneNumbers(39)
+select * from ID_phoneNumbers(11)
+select * from ID_phoneNumbers(29)
+select * from ID_phoneNumbers(10)

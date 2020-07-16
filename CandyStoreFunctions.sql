@@ -84,3 +84,13 @@ create FUNCTION PhoneNumber_Name (@PhoneNumber VARCHAR(15))
         where CustomerPhoneNumber.PhoneNumber = @PhoneNumber 
                             
 
+-- FUNCTION 5     
+create FUNCTION ID_phoneNumbers (@ID int)
+    RETURNS TABLE
+    AS
+    RETURN 
+        select Customer.CustomerId, CustomerName, CustomerLastName, CustomerPhoneNumber.PhoneNumber
+        from CustomerPhoneNumber inner join Customer
+            on (CustomerPhoneNumber.CustomerId = Customer.CustomerId)
+        where CustomerPhoneNumber.CustomerId = @ID
+
