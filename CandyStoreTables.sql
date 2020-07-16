@@ -39,12 +39,16 @@ create table Customer (
     CustomerId INT IDENTITY(1,1),
     CustomerName varchar(30) not null,
     CustomerLastName varchar(30) not null,
-    PhoneNumber varchar(15),
     CityId int,
     PRIMARY KEY (CustomerId),
     FOREIGN KEY(CityId) references City(CityId)
 )
 
+create table CustomerPhoneNumber (
+    CustomerId INT,
+    PhoneNumber varchar(15),
+    FOREIGN KEY(CustomerId) REFERENCES Customer(CustomerId)
+)
 
 create table Manager (
     ManagerId INT IDENTITY(1,1),
@@ -104,3 +108,4 @@ create table InvoiceDetail (
     FOREIGN KEY(InvoiceHeaderId) references InvoiceHeader(InvoiceHeaderId),
     FOREIGN KEY(ProductId) references Product(ProductId)
 )
+
