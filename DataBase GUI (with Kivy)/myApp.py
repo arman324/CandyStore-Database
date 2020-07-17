@@ -9,6 +9,9 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
 from struct import pack
+from kivy.uix.popup import Popup
+from kivy.uix.gridlayout import GridLayout
+
 
 SERVER = "localhost"
 USER = "sa"
@@ -80,7 +83,6 @@ class MyGrid(GridLayout):
         self.add_widget(self.btn)
 
     def pressedItem(self, instance):
-        #print "Name:",instance.text
         listOfItems = instance.text.split()
         self.AllItems.append(listOfItems[0])
         self.Cost += float(listOfItems[len(listOfItems)-1])
@@ -88,15 +90,34 @@ class MyGrid(GridLayout):
 
     def pressedAccept(self, instance):
         if self.BranchID.text == "":
-            print "Branch Field is empty"
+            layout = GridLayout(cols = 1, padding = 40)
+            closeButton = Button(text = "Close")
+            layout.add_widget(closeButton)
+            popup = Popup(title ="Branch Field is empty",content = layout,size_hint =(None, None), size =(500, 500))
+            popup.open()
+            closeButton.bind(on_press = popup.dismiss)
         elif self.EmployeeID.text == "":
-            print "Employee Field is empty"
+            layout = GridLayout(cols = 1, padding = 40)
+            closeButton = Button(text = "Close")
+            layout.add_widget(closeButton)
+            popup = Popup(title ="Employee Field is empty",content = layout,size_hint =(None, None), size =(500, 500))
+            popup.open()
+            closeButton.bind(on_press = popup.dismiss)
         elif self.CustomerID.text == "":
-            print "Customer Field is empty"
+            layout = GridLayout(cols = 1, padding = 40)
+            closeButton = Button(text = "Close")
+            layout.add_widget(closeButton)
+            popup = Popup(title ="Customer Field is empty",content = layout,size_hint =(None, None), size =(500, 500))
+            popup.open()
+            closeButton.bind(on_press = popup.dismiss)
         elif self.BirthDayServiceID.text == "":
-            print "BirthDayService Field is empty"
+            layout = GridLayout(cols = 1, padding = 40)
+            closeButton = Button(text = "Close")
+            layout.add_widget(closeButton)
+            popup = Popup(title ="BirthDayService Field is empty",content = layout,size_hint =(None, None), size =(500, 500))
+            popup.open()
+            closeButton.bind(on_press = popup.dismiss)
         else:
-
             BranchID = self.BranchID.text
             EmployeeID = self.EmployeeID.text
             CustomerID = self.CustomerID.text
@@ -105,28 +126,27 @@ class MyGrid(GridLayout):
 
             self.lbl.text = "Total cost = 0"
             self.Cost = 0.0
-            print self.AllItems
+            #print self.AllItems
             for itemNumber in self.AllItems:
                 if itemNumber in self.Counter:
                     self.Counter[itemNumber] += 1
                 else:
                     self.Counter[itemNumber] = 1
 
-
-            print self.Counter
+            #print self.Counter
 
             for this in self.Counter:
                 self.ProductID.append(int(this))
                 self.productQuantity.append(self.Counter[this])
 
-            print self.ProductID
-            print self.productQuantity
+            #print self.ProductID
+            #print self.productQuantity
 
             self.InsertToSQLServer = "insert into InvoiceHeader VALUES (" + CustomerID +","+ BranchID +",NULL," + BirthDayServiceID+",NULL,GETDATE()," +EmployeeID+")"
             cursor.execute(self.InsertToSQLServer)
             connection.commit()
 
-            print self.InsertToSQLServer
+            #print self.InsertToSQLServer
 
             cursor.execute("select MAX(InvoiceHeaderID) from InvoiceHeader")
             for row in cursor:
