@@ -54,4 +54,31 @@ CREATE TRIGGER ModifyGetDate
     where InvoiceHeaderId = (select InvoiceHeaderId from inserted)
 
 
+-- Trigger 4
+alter TRIGGER addUnitPriceToInvoiceDetail
+ on InvoiceDetail
+ AFTER INSERT
+ AS
+ UPDATE InvoiceDetail
+ set UnitPrice = (select Price
+                  from Product
+                  where Product.ProductId = (select ProductID from inserted))
+ where InvoiceDetailId = (select InvoiceDetailId from inserted)
+
+
+-- Trigger 5
+create TRIGGER addRowCostToInvoiceDetail
+ on InvoiceDetail
+ AFTER INSERT
+ AS
+ DECLARE @quantity INT;
+ DECLARE @unitprice NUMERIC(10,2);
+ set @quantity = (select quantity from inserted)
+ set @unitprice = (select Price
+                  from Product
+                  where Product.ProductId = (select ProductID from inserted))
+
+ UPDATE InvoiceDetail
+ set RowCost = @quantity * @unitprice
+ where InvoiceDetailId = (select InvoiceDetailId from inserted)
 
