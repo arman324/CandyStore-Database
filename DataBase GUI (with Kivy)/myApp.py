@@ -24,7 +24,6 @@ cursor.execute("SELECT * FROM Product")
 products = []
 i = 0
 
-
 for row in cursor:
     products.append("                      "+str(row[0]).ljust(35-len(str(row[0])))+row[1].ljust(100-len(row[1]))+str(row[5]))
     i += 1
@@ -34,6 +33,13 @@ class MyButt(Button):
 
 
 class MyGrid(GridLayout):
+    Cost = 0.0
+    Counter = dict()
+    AllItems = []
+    ProductID = []
+    productQuantity =[]
+    InsertToSQLServer = ""
+
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 
@@ -74,25 +80,73 @@ class MyGrid(GridLayout):
         self.add_widget(self.btn)
 
     def pressedItem(self, instance):
-        print "Name:",instance.text
-        Cost = "12$"
-        self.lbl.text = "Total cost = " + Cost
+        #print "Name:",instance.text
+        listOfItems = instance.text.split()
+        self.AllItems.append(listOfItems[0])
+        self.Cost += float(listOfItems[len(listOfItems)-1])
+        self.lbl.text = "Total cost = " + str(self.Cost)
 
     def pressedAccept(self, instance):
-        BranchID = self.BranchID.text
-        EmployeeID = self.EmployeeID.text
-        CustomerID = self.CustomerID.text
-        BirthDayServiceID = self.BirthDayServiceID.text
-        print "BranchID:",BranchID
-        print "EmployeeID:",EmployeeID
-        print "CustomerID:",CustomerID
-        print "BirthDayServiceID:",BirthDayServiceID
+        if self.BranchID.text == "":
+            print "Branch Field is empty"
+        elif self.EmployeeID.text == "":
+            print "Employee Field is empty"
+        elif self.CustomerID.text == "":
+            print "Customer Field is empty"
+        elif self.BirthDayServiceID.text == "":
+            print "BirthDayService Field is empty"
+        else:
 
-        self.BranchID.text = ""
-        self.EmployeeID.text = ""
-        self.CustomerID.text = ""
-        self.BirthDayServiceID.text = ""
+            BranchID = self.BranchID.text
+            EmployeeID = self.EmployeeID.text
+            CustomerID = self.CustomerID.text
+            BirthDayServiceID = self.BirthDayServiceID.text
 
+
+            self.lbl.text = "Total cost = 0"
+            self.Cost = 0.0
+            print self.AllItems
+            for itemNumber in self.AllItems:
+                if itemNumber in self.Counter:
+                    self.Counter[itemNumber] += 1
+                else:
+                    self.Counter[itemNumber] = 1
+
+
+            print self.Counter
+
+            for this in self.Counter:
+                self.ProductID.append(int(this))
+                self.productQuantity.append(self.Counter[this])
+
+            print self.ProductID
+            print self.productQuantity
+
+            self.InsertToSQLServer = "insert into InvoiceHeader VALUES (" + CustomerID +","+ BranchID +",NULL," + BirthDayServiceID+",NULL,GETDATE()," +EmployeeID+")"
+            cursor.execute(self.InsertToSQLServer)
+            connection.commit()
+
+            print self.InsertToSQLServer
+
+            cursor.execute("select MAX(InvoiceHeaderID) from InvoiceHeader")
+            for row in cursor:
+                MAXinvoiceHeaderID = row[0]
+
+            for i in range (0,len(self.ProductID)):
+                self.InsertToSQLServer = "insert into InvoiceDetail VALUES (" + str(MAXinvoiceHeaderID) + ","+ str(self.ProductID[i]) + "," + str(self.productQuantity[i]) + ",NULL,NULL)"
+                cursor.execute(self.InsertToSQLServer)
+                connection.commit()
+
+
+            self.ProductID = []
+            self.productQuantity = []
+            self.AllItems = []
+            self.Counter = dict()
+
+            self.BranchID.text = ""
+            self.EmployeeID.text = ""
+            self.CustomerID.text = ""
+            self.BirthDayServiceID.text = ""
 
 class MyApp(App):
     def build(self):
