@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from kivy.properties import ObjectProperty
+from struct import pack
 
 SERVER = "localhost"
 USER = "sa"
@@ -23,9 +24,13 @@ cursor.execute("SELECT * FROM Product")
 products = []
 i = 0
 
+
 for row in cursor:
-    products.append(str(row[0])+"               "+row[1]+"                    "+str(row[5]))
+    products.append("                      "+str(row[0]).ljust(35-len(str(row[0])))+row[1].ljust(100-len(row[1]))+str(row[5]))
     i += 1
+
+class MyButt(Button):
+    pass
 
 
 class MyGrid(GridLayout):
@@ -55,7 +60,7 @@ class MyGrid(GridLayout):
         self.add_widget(self.lbl)
 
         for i in range (0,len(products)):
-            self.btn = Button(text=str(products[i]),background_color =(.3, .6, .7, 1),halign="left")
+            self.btn = MyButt(text=str(products[i]))
             self.btn.bind(on_press=self.pressedItem)
             self.add_widget(self.btn)
 
