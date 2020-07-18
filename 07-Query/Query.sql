@@ -23,7 +23,6 @@ from Customer
   ON (Customer.CityId = City.CityId)
  inner join Country
    ON (City.CountryId = Country.CountryId)
-where Country.ContinentName = 'North America'
 
 
 -- Query 2
@@ -97,7 +96,7 @@ GROUP BY GROUPING SETS(
     (Country.CountryName), 
     (Country.ContinentName)
 ) 
-order by Country.CountryName, Country.ContinentName   
+order by TotalCost DESC
 
 
 -- Query 6
