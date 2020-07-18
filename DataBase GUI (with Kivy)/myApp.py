@@ -11,7 +11,9 @@ from kivy.properties import ObjectProperty
 from struct import pack
 from kivy.uix.popup import Popup
 from kivy.uix.gridlayout import GridLayout
-
+from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 SERVER = "localhost"
 USER = "sa"
@@ -31,11 +33,13 @@ for row in cursor:
     products.append("                      "+str(row[0]).ljust(35-len(str(row[0])))+row[1].ljust(100-len(row[1]))+str(row[5]))
     i += 1
 
+
+
 class MyButt(Button):
     pass
 
 
-class MyGrid(GridLayout):
+class MyGrid(GridLayout,Screen):
     Cost = 0.0
     Counter = dict()
     AllItems = []
@@ -81,6 +85,13 @@ class MyGrid(GridLayout):
         self.add_widget(self.lbl)
 
         self.add_widget(self.btn)
+
+        self.btn = Button(text="NextPage",background_color =(.3, .6, .7, 1),halign="left")
+        self.btn.bind(on_press=self.pressedNextPage)
+        self.add_widget(self.btn)
+
+    def pressedNextPage(self, instance):
+        self.manager.current = 'nextScreen'
 
     def pressedItem(self, instance):
         listOfItems = instance.text.split()
@@ -168,8 +179,27 @@ class MyGrid(GridLayout):
             self.CustomerID.text = ""
             self.BirthDayServiceID.text = ""
 
+
+class nextScreen(Screen):  #For later function navigation
+    def __init__(self, **kwargs): #constructor method
+        super(nextScreen, self).__init__(**kwargs) #init parent
+        self.btn = Button(text="back",background_color =(.3, .6, .7, 1),halign="left")
+        self.btn.bind(on_press=self.pressedbackPage)
+        self.add_widget(self.btn)
+
+    def pressedbackPage(self, instance):
+        self.manager.current = 'MyGrid'
+
+
+
+
+
 class MyApp(App):
     def build(self):
+        sm = ScreenManager()
+        sm.add_widget(MyGrid(name='MyGrid'))
+        sm.add_widget(nextScreen(name='nextScreen'))
+        return sm
         return MyGrid()
 
 
